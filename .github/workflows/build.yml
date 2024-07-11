@@ -12,10 +12,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Mise à jour pour utiliser Node.js 20
+          node-version: '20'  # Assurez-vous que c'est la dernière version
       - uses: actions/checkout@v3  # Assurez-vous que c'est la dernière version
       - name: Build Docker image
         run: |
-          docker build -t username/myapp:${{ github.sha }} .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }} .
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-          docker push username/myapp:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
