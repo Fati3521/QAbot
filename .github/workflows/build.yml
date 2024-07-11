@@ -2,8 +2,8 @@ name: Build and Push Image
 
 on:
   push:
-    branches: 
-      - main  # Déclenche le workflow sur les poussées vers la branche principale
+    branches:
+      - main
 
 jobs:
   build:
@@ -12,8 +12,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Assurez-vous que cette ligne correspond à la version recommandée ou plus récente
-      - uses: actions/checkout@v3  # Mise à jour à la dernière version
+          node-version: '20'  # Mise à jour pour utiliser Node.js 20
+      - uses: actions/checkout@v3  # Assurez-vous que c'est la dernière version
       - name: Build Docker image
         run: |
           docker build -t username/myapp:${{ github.sha }} .
