@@ -16,6 +16,8 @@ jobs:
       uses: azure/setup-kubectl@v1
     - name: Configure Kubeconfig
       run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
         echo "${{ secrets.KUBECONFIG }}" | base64 --decode > ${HOME}/.kube/config
     - name: Deploy to Kubernetes
       run: |
