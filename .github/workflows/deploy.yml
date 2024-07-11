@@ -11,9 +11,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3  # Mise à jour à la dernière version pour éviter l'utilisation de Node.js dépréciée
     - name: Set up Kubectl
-      uses: azure/setup-kubectl@v1
+      uses: azure/setup-kubectl@v1  # Cette action n'est pas affectée par Node.js, mais assurez-vous que c'est la dernière version disponible
     - name: Configure Kubeconfig
       run: |
         echo "${{ secrets.KUBECONFIG }}" | base64 --decode > ${HOME}/.kube/config
