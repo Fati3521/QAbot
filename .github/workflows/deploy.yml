@@ -14,11 +14,18 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Kubectl
       uses: azure/setup-kubectl@v1
+    - name: Install gcloud and gke-gcloud-auth-plugin
+      run: |
+        echo "${{ secrets.GCLOUD_AUTH }}" | base64 --decode > gcloud.json
+        curl https://sdk.cloud.google.com | bash
+        echo "source /home/runner/google-cloud-sdk/path.bash.inc" >> $BASH_ENV
+        source /home/runner/google-cloud-sdk/path.bash.inc
+        gcloud auth activate-service-account --key-file=gcloud.json
+        gcloud components install gke-gcloud-auth-plugin
     - name: Configure Kubeconfig
       run: |
         mkdir -p $HOME/.kube
         echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
-        echo "${{ secrets.KUBECONFIG }}" | base64 --decode > ${HOME}/.kube/config
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f k8s/
