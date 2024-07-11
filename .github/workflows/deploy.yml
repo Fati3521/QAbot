@@ -12,12 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@latest
 
-    - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v0
+    - name: Authenticate with Google Cloud
+      uses: google-github-actions/auth@v0
       with:
-        service_account_key: ${{ secrets.GCLOUD_AUTH }}
-        export_default_credentials: true
+        credentials_json: ${{ secrets.GCLOUD_AUTH }}
 
     - name: Install GKE gcloud auth plugin
       run: |
