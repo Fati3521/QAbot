@@ -23,6 +23,11 @@ jobs:
 
     - name: Install GKE gcloud auth plugin
       run: |
+        echo "${{ secrets.GCLOUD_AUTH }}" | base64 --decode > gcloud.json
+        curl https://sdk.cloud.google.com | bash
+        echo "source /home/runner/google-cloud-sdk/path.bash.inc" >> $GITHUB_ENV
+        source /home/runner/google-cloud-sdk/path.bash.inc
+        gcloud auth activate-service-account --key-file=gcloud.json
         gcloud components install gke-gcloud-auth-plugin
 
     - name: Configure Kubeconfig
