@@ -12,8 +12,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
-      - uses: actions/checkout@v2
+          node-version: '16'  # Assurez-vous que cette ligne correspond à la version recommandée ou plus récente
+      - uses: actions/checkout@v3  # Mise à jour à la dernière version
       - name: Build Docker image
         run: |
           docker build -t username/myapp:${{ github.sha }} .
