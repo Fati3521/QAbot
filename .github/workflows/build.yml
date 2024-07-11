@@ -1,3 +1,10 @@
+name: Build and Push Image
+
+on:
+  push:
+    branches: 
+      - main  # Déclenche le workflow sur les poussées vers la branche principale
+
 jobs:
   build:
     runs-on: ubuntu-latest
