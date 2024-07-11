@@ -14,10 +14,10 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Setup Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@latest
+      uses: google-github-actions/setup-gcloud@v0.3.0  # Utilisation d'une version spécifique
 
     - name: Authenticate with Google Cloud
-      uses: google-github-actions/auth@v0
+      uses: google-github-actions/auth@v0.4.0  # Utilisation d'une version spécifique pour l'action auth
       with:
         credentials_json: ${{ secrets.GCLOUD_AUTH }}
 
