@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: fastapi-app
-        image: username/my-fastapi-app:latest
+        image: amdiaby/myapp
         ports:
         - containerPort: 80
