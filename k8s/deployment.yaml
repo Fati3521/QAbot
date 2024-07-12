@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: fastapi-app
-        image: amdiaby/myapp
+        image: amdiaby/myapp:${{ github.sha }}
         ports:
         - containerPort: 80
