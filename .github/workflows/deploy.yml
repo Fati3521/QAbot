@@ -11,13 +11,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4  # Mis à jour à la dernière version
+    - uses: actions/checkout@v4  # Assurez-vous d'utiliser la dernière version stable
 
     - name: Setup Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v1  # Mis à jour à la dernière version stable
+      uses: google-github-actions/setup-gcloud@v1
 
     - name: Authenticate with Google Cloud
-      uses: google-github-actions/auth@v1  # Mis à jour à la dernière version stable
+      uses: google-github-actions/auth@v1
       with:
         credentials_json: ${{ secrets.GCLOUD_AUTH }}
 
